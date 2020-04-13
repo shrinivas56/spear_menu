@@ -46,6 +46,7 @@ typedef SpearMenuStateChanged = Function(bool isShow);
 class SpearMenu {
 //  static var itemWidth = 152.0;
   static var itemWidth = MediaQuery.of(context).size.width;
+  static double widthFactor;
   static var itemHeight = 60.0;
   static var arrowHeight = 10.0;
   OverlayEntry _entry;
@@ -78,7 +79,6 @@ class SpearMenu {
   Color _highlightColor;
   Color _lineColor;
   double height;
-  double widthFactor;
 
   /// It's showing or not.
   bool _isShow = false;
@@ -94,7 +94,8 @@ class SpearMenu {
       Color lineColor,
       SpearMenuStateChanged stateChanged,
       List<MenuItemProvider> items,
-      double height, double widthFactor}) {
+      double height,
+      double widthFactor}) {
     this.onClickMenu = onClickMenu;
     this.dismissCallback = onDismiss;
     this.stateChanged = stateChanged;
@@ -103,7 +104,7 @@ class SpearMenu {
     this._backgroundColor = backgroundColor ?? Colors.white;
     this._lineColor = lineColor ?? Colors.grey;
     this._highlightColor = highlightColor ?? Colors.grey;
-    this.widthFactor = widthFactor?? 0.5;
+    this.widthFactor = widthFactor ?? 0.5;
     if (context != null) {
       SpearMenu.context = context;
     }
@@ -359,7 +360,7 @@ class _MenuItemWidgetState extends State<_MenuItemWidget> {
         }
       },
       child: Container(
-          width: SpearMenu.itemWidth,
+          width: SpearMenu.itemWidth * SpearMenu.widthFactor,
           height: SpearMenu.itemHeight,
           decoration: BoxDecoration(
             color: color,
