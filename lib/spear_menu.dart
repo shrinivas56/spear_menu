@@ -45,7 +45,7 @@ typedef SpearMenuStateChanged = Function(bool isShow);
 
 class SpearMenu {
 //  static var itemWidth = 152.0;
-  static var itemWidth = MediaQuery.of(context).size.width * 0.95;
+  static var itemWidth = MediaQuery.of(context).size.width * 0.5;
   static var itemHeight = 60.0;
   static var arrowHeight = 10.0;
   OverlayEntry _entry;
@@ -173,7 +173,7 @@ class SpearMenu {
 
   // This height exclude the arrow
   double menuHeight() {
-    double calculatedHeight = MediaQuery.of(context).size.height * 0.5;
+    double calculatedHeight = MediaQuery.of(context).size.height * 0.7;
     return min(calculatedHeight, itemHeight * _row);
   }
 
