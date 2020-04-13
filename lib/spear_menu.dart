@@ -48,7 +48,7 @@ class SpearMenu {
   static var itemWidth = MediaQuery.of(context).size.width;
   static double widthFactor;
   static var itemHeight = 60.0;
-  static var arrowHeight = 10.0;
+  static var arrowHeight = 0.0;
   OverlayEntry _entry;
   List<MenuItemProvider> items;
 
