@@ -149,8 +149,9 @@ class SpearMenu {
   Offset _calculateOffset(BuildContext context) {
     double dx = _showRect.left + _showRect.width / 2.0 - menuWidth() / 2.0;
     if (dx < 10.0) {
-      dx = 10.0;
+      dx = 2;
     }
+    print("dx $dx");
 
     if (dx + menuWidth() > _screenSize.width && dx > 10.0) {
       double tempDx = _screenSize.width - menuWidth() - 10;
@@ -167,6 +168,7 @@ class SpearMenu {
       _isDown = true;
     }
 
+    print("dx $dy");
     return Offset(dx, dy);
   }
 
