@@ -95,7 +95,7 @@ class SpearMenu {
       SpearMenuStateChanged stateChanged,
       List<MenuItemProvider> items,
       double height,
-      double widthFactor}) {
+      double widthFactr}) {
     this.onClickMenu = onClickMenu;
     this.dismissCallback = onDismiss;
     this.stateChanged = stateChanged;
@@ -104,7 +104,7 @@ class SpearMenu {
     this._backgroundColor = backgroundColor ?? Colors.white;
     this._lineColor = lineColor ?? Colors.grey;
     this._highlightColor = highlightColor ?? Colors.grey;
-    this.widthFactor = widthFactor ?? 0.5;
+    widthFactor = widthFactr ?? 0.5;
     if (context != null) {
       SpearMenu.context = context;
     }
