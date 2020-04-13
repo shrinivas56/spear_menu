@@ -5,6 +5,7 @@ import 'dart:math';
 import 'dart:ui';
 
 import 'package:flutter/material.dart';
+import 'package:spear_menu/triangle_painter.dart';
 
 abstract class MenuItemProvider {
   String get menuTitle;
@@ -189,12 +190,6 @@ class SpearMenu {
         onTap: () {
           dismiss();
         },
-        /*onVerticalDragStart: (DragStartDetails details) {
-          dismiss();
-        },
-        onHorizontalDragStart: (DragStartDetails details) {
-          dismiss();
-        },*/
         child: Container(
           decoration: new BoxDecoration(
               border: new Border.all(width: 2.0, color: Colors.transparent),
@@ -202,14 +197,17 @@ class SpearMenu {
           child: Stack(
             children: <Widget>[
               // triangle arrow
-              /*Positioned(
+              Positioned(
                 left: _showRect.left + _showRect.width / 2.0 - 7.5,
-                top: _isDown ? offset.dy + menuHeight() : offset.dy - arrowHeight,
+                top: _isDown
+                    ? offset.dy + menuHeight()
+                    : offset.dy - arrowHeight,
                 child: CustomPaint(
                   size: Size(15.0, arrowHeight),
-                  painter: TrianglePainter(isDown: _isDown, color: _backgroundColor),
+                  painter:
+                      TrianglePainter(isDown: _isDown, color: _backgroundColor),
                 ),
-              ),*/
+              ),
               // menu content
               Positioned(
                 left: offset.dx,
@@ -253,19 +251,14 @@ class SpearMenu {
     //List<Widget> rows = [];
     //for (int i = 0; i < _row; i++) {
     print("i $i");
-    return Container(
-      height: itemHeight,
-      child: Row(
-        children: _createRowItems(i),
-      ),
-    );
+    return _createRowItems(i);
 
     //rows.add(rowWidget);
     //}
   }
 
   //Create a line of item,  row Count from 0
-  List<Widget> _createRowItems(int row) {
+  Widget _createRowItems(int row) {
     List<MenuItemProvider> subItems =
         items.sublist(row, min(row + 1, items.length));
     List<Widget> itemWidgets = [];
@@ -273,7 +266,7 @@ class SpearMenu {
       itemWidgets.add(_createMenuItem(item));
     }
 
-    return itemWidgets;
+    return _createMenuItem(items[row]);
   }
 
   Widget _createMenuItem(MenuItemProvider item) {
@@ -363,7 +356,6 @@ class _MenuItemWidgetState extends State<_MenuItemWidget> {
       },
       child: Container(
           width: SpearMenu.itemWidth * SpearMenu.widthFactor,
-          height: SpearMenu.itemHeight,
           decoration: BoxDecoration(
             color: color,
           ),
@@ -374,7 +366,7 @@ class _MenuItemWidgetState extends State<_MenuItemWidget> {
   Widget _createContent() {
     bool activeMode = widget.item.activeStatus;
     return Container(
-      padding: EdgeInsets.all(12.0),
+      padding: EdgeInsets.symmetric(horizontal: 10.0, vertical: 5.0),
       alignment: Alignment.centerLeft,
       child: Row(
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
