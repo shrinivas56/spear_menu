@@ -173,7 +173,7 @@ class SpearMenu {
 
   // This height exclude the arrow
   double menuHeight() {
-    double calculatedHeight = MediaQuery.of(context).size.height * 0.7;
+    double calculatedHeight = MediaQuery.of(context).size.height * 0.5;
     return min(calculatedHeight, itemHeight * _row);
   }
 
@@ -211,8 +211,8 @@ class SpearMenu {
                 top: offset.dy,
                 child: Container(
                   width: menuWidth(),
+                  height: menuHeight(),
                   child: Column(
-                    mainAxisSize: MainAxisSize.min,
                     children: <Widget>[
                       ClipRRect(
                           borderRadius: BorderRadius.circular(10.0),
@@ -247,10 +247,8 @@ class SpearMenu {
   Widget _createRows(int i) {
     //List<Widget> rows = [];
     //for (int i = 0; i < _row; i++) {
-    Color color = (i < _row - 1 && _row != 1) ? _lineColor : Colors.transparent;
+    print("i $i");
     return Container(
-      decoration: BoxDecoration(
-          border: Border(bottom: BorderSide(color: color, width: 0.5))),
       height: itemHeight,
       child: Row(
         children: _createRowItems(i),
